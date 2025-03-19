@@ -8,6 +8,7 @@ import com.ud.productservice.repository.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -39,6 +40,12 @@ public class ProductServiceImpl implements ProductService{
 
         return productMapper.mapProductToProductResponse(optionalProduct.get());
 
+    }
+
+    @Override
+    public List<ProductResponse> getAllProduct() {
+        List<Product> products = productRepository.findAll();
+        return productMapper.mapProductsToProductResponses(products);
     }
 
 

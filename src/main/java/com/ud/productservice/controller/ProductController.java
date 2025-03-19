@@ -8,6 +8,8 @@ import com.ud.productservice.service.ProductServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/product")
 public class ProductController {
@@ -28,6 +30,12 @@ public class ProductController {
     @ResponseStatus(HttpStatus.OK)
     public ProductResponse getProductById(@RequestParam String id){
         return productServiceImpl.getProductById(id);
+    }
+
+    @GetMapping("/get-all-product")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ProductResponse> getAllProduct(){
+        return productServiceImpl.getAllProduct();
     }
 
 }

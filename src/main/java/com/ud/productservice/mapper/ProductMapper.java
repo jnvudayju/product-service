@@ -5,6 +5,9 @@ import com.ud.productservice.dto.ProductResponse;
 import com.ud.productservice.entity.Product;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 public class ProductMapper {
 
@@ -25,5 +28,11 @@ public class ProductMapper {
                 .description(product.getDescription())
                 .price(product.getPrice())
                 .build();
+    }
+
+    public List<ProductResponse> mapProductsToProductResponses(List<Product> products){
+        return products.stream()
+                .map(this::mapProductToProductResponse)
+                .collect(Collectors.toList());
     }
 }
